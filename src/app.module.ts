@@ -5,7 +5,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Beverage } from 'src/beverage/beverage.entity';
-import { UserModule } from './user/user.module';
+import { User } from './user/user.entity';
+import { AuthController } from './auth/auth.controller';
+import { UserController } from './user/user.controller';
+import { UserService } from './user/user.service';
+import { AuthService } from './auth/auth.service';
+
+const entityList = [Beverage, User];
 
 @Module({
   imports: [
@@ -17,13 +23,17 @@ import { UserModule } from './user/user.module';
       username: 'root',
       password: '',
       database: 'coffee-shop',
-      entities: [Beverage],
+      entities: entityList,
       synchronize: false,
     }),
-    TypeOrmModule.forFeature([Beverage]),
-    UserModule,
+    TypeOrmModule.forFeature(entityList),
   ],
-  controllers: [BeverageController, AppController],
-  providers: [BeverageService, AppService],
+  controllers: [
+    BeverageController,
+    AppController,
+    UserController,
+    AuthController,
+  ],
+  providers: [BeverageService, AppService, UserService, AuthService],
 })
-export class AppModule { }
+export class AppModule {}

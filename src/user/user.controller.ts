@@ -1,17 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
+import { UserDeleteDto, UserGetOneDto, UserUpdateDto } from './user.dto';
 import { UserService } from './user.service';
-import { UserCreatedDto, UserDeleteDto, UserGetOneDto, UserUpdateDto } from './user.dto';
-
-
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
-  @Post()
-  create(@Body() createUserDto: UserCreatedDto) {
-    return this.userService.create(createUserDto);
-  }
+  // @Post()
+  // // auth에서 사용자 생성
+  // create(@Body() createUserDto: UserCreatedDto) {
+  //   return this.userService.create(createUserDto);
+  // }
 
   @Get()
   findAll() {

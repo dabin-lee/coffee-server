@@ -5,20 +5,22 @@ https://docs.nestjs.com/controllers#controllers
 import { Beverage } from 'src/beverage/beverage.entity';
 import { BeverageService } from 'src/beverage/beverage.service';
 import { Controller, Get, Param, Post, Body } from '@nestjs/common';
-import { BeverageCreatedDto, BeverageGetOneDto } from 'src/beverage/beverage.dto';
+import {
+  BeverageCreatedDto,
+  BeverageGetOneDto,
+} from 'src/beverage/beverage.dto';
 
 @Controller('beverage')
 export class BeverageController {
   constructor(
     // service 가져오기
     private beverageService: BeverageService,
-  ) { }
+  ) {}
 
   @Get()
   async getList(): Promise<Beverage[]> {
     const beverageList = await this.beverageService.getList();
     return beverageList;
-
   }
 
   @Get(':id')

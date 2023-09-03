@@ -11,9 +11,10 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class BeverageService {
   constructor(
+    // entity를 리포지토리로 만듬
     @InjectRepository(Beverage)
     private beverageRepository: Repository<Beverage>,
-  ) { }
+  ) {}
 
   async getList(): Promise<Beverage[]> {
     const beverageList = await this.beverageRepository.find();
@@ -22,7 +23,7 @@ export class BeverageService {
 
   async getOne(id: number): Promise<Beverage> {
     const beverage = await this.beverageRepository.findOne({
-      where: { id },
+      where: { id: id },
     });
     return beverage;
   }

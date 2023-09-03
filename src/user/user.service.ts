@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { UserCreatedDto, UserDeleteDto, UserGetOneDto, UserUpdateDto } from './user.dto';
-
+import { UserCreatedDto, UserUpdateDto } from './user.dto';
 
 @Injectable()
 export class UserService {
   // 매개변수에 대한 데이터 타입
   create(params: UserCreatedDto) {
+    console.log('params: ', params);
     return 'This action adds a new user';
   }
 
@@ -18,6 +18,7 @@ export class UserService {
   }
 
   update(id: number, params: UserUpdateDto) {
+    console.log('params: ', params);
     return `This action updates a #${id} user`;
   }
 
